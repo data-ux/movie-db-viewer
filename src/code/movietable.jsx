@@ -1,5 +1,6 @@
 /** @jsx React.DOM */
 'use strict'
+require("../css/movietable.css")
 var React = require('react')
 module.exports = React.createClass({
     displayName: 'MovieTable',
@@ -43,7 +44,7 @@ module.exports = React.createClass({
             );
         });
         return (
-            <table>
+            <table className='movie-table'>
                 <thead>
                 <tr>{headings}</tr>
                 </thead>

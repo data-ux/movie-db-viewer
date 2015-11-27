@@ -6,5 +6,5 @@ var ReactDOM = require('react-dom')
 var MovieTable = require('./movietable')
 var getMovies = require('./getmovies')
 getMovies(function(result){
-	ReactDOM.render(<MovieTable data={result} />, document.getElementById('content'))
+	ReactDOM.render(<MovieTable data={result} />, document.getElementById('movie-db-content'))
 });
