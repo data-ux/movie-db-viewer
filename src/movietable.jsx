@@ -17,15 +17,19 @@ module.exports = React.createClass({
         });
     },
     render: function(){
+        var headings = this.props.data.headings.map(function(heading, i) {
+            var className = '';
+            if(this.state.sortColumn === i){
+                className = this.state.sortAscending ? 'sort-ascending' : 'sort-descending';
+            }
+            return (
+                <th className={className} onClick={this.handleClick}>{heading}</th>
+            )
+        }, this);
         var sorted = this.props.data.table.slice().sort( (function(a,b){
             var c = this.state.sortColumn;
             return this.state.sortAscending ? a.cells[c].localeCompare(b.cells[c]) : b.cells[c].localeCompare(a.cells[c]);
         }).bind(this));
-        var headings = this.props.data.headings.map(function(heading) {
-            return (
-                <th onClick={this.handleClick}>{heading}</th>
-            )
-        }, this);
         var rows = sorted.map(function(row) {
             var cells = row.cells.map(function(cell){
                 return (
