@@ -1,4 +1,20 @@
 .search-box{
 	text-align: right;
-	padding: 5px 0;
+	padding: 10px 0;
+}
+
+.search-box label{
+	font-size: 14px;
+	padding: 0 10px;
+}
+.search-box input[type=search]{
+	font-size: 13px;
+	height: 20px;
+	border-width: 1px;
+	box-shadow:inset 1px 1px 2px 1px rgba(0,0,0,0.1);
+  	background: #fff;
+	padding: 1px 2px 1px 2px;
+}
+.search-box input[type=checkbox]{
+	margin: 3px
 }

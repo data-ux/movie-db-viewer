@@ -23,7 +23,7 @@ module.exports = React.createClass({
     	return (
             <div className='search-box'>
                 <label><input type='checkbox' checked={this.state.useRegex} onChange={this.handleCheckBox} />Käytä regex</label>
-                <input type='text' placeholder={this.props.placeholder} onChange={this.handleText} value={this.state.searchTerm} />
+                <input type='search' placeholder={this.props.placeholder} onChange={this.handleText} value={this.state.searchTerm} />
             </div>
 		)
     }
