@@ -10,8 +10,8 @@ module.exports = function getMovies(callback){
 				cells: [
 					e.gsx$valmistusvuosi.$t,
 					e.gsx$nimi.$t,
-					e.gsx$tekijät.$t,
-					e.gsx$kestohms.$t
+					e.gsx$synopsis.$t,
+					e.gsx$tekijät.$t
 				]
 			};
 		});
