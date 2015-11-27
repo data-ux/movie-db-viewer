@@ -7,14 +7,18 @@ table.movie-table{
 table.movie-table th{
 	background-color: #eee;
 	text-transform: capitalize;
+	text-align: left;
 	cursor: pointer;
 	border-bottom: 1px solid #aaa;
 	padding: 3px 10px;
+}
+table.movie-table th:hover{
+	text-decoration: underline;
 }
 table.movie-table tr:nth-of-type(2n){
 	background-color: #eee;
 }
 table.movie-table td{
 	vertical-align: top;
-	padding: 5px 5px;
+	padding: 5px 10px;
 }
