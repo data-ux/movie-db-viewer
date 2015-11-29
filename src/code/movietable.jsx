@@ -27,10 +27,12 @@ module.exports = React.createClass({
                 <th className={className} onClick={this.handleClick}>{heading}</th>
             )
         }, this);
-        var sorted = this.props.data.table.slice().sort( (function(a,b){
-            var c = this.state.sortColumn;
-            return this.state.sortAscending ? a.cells[c].localeCompare(b.cells[c]) : b.cells[c].localeCompare(a.cells[c]);
-        }).bind(this));
+        var sorted;
+        if(this.props.data.headings[ this.state.sortColumn ] === 'valmistusvuosi'){
+            sorted = this.props.data.table.slice().sort(yearSorter.bind(this));
+        }else{
+            sorted = this.props.data.table.slice().sort(stringSorter.bind(this));
+        } 
         var rows = sorted.map(function(row) {
             var cells = row.cells.map(function(cell){
                 return (
@@ -55,3 +57,29 @@ module.exports = React.createClass({
         )
     }
 })
+
+// helper functions
+var yearRegex = /[0-9]{4}/
+function yearSorter(a,b){
+    var c = this.state.sortColumn;
+    var a_match = a.cells[c].match(yearRegex) || ['9999'];
+    var b_match = b.cells[c].match(yearRegex) || ['9999'];
+    if(this.state.sortAscending){
+        return (a_match[0]+a.cells[c]).localeCompare(b_match[0]+b.cells[c]);
+    }else{
+         return (b_match[0]+b.cells[c]).localeCompare(a_match[0]+a.cells[c]);
+    }
+}
+
+function stringSorter(a,b){
+    var c = this.state.sortColumn;
+    var a = a.cells[c];
+    var b = b.cells[c];
+    if(a.length < 2) a = '末';
+    if(b.length < 2) b = '末';
+    if(this.state.sortAscending){
+        return a.localeCompare(b);
+    }else{
+         return b.localeCompare(a);
+    }
+}
