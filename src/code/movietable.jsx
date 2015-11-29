@@ -44,7 +44,7 @@ module.exports = React.createClass({
             );
         });
         return (
-            <table className='movie-table'>
+            <table className='movie-table pure-table pure-table-striped'>
                 <thead>
                 <tr>{headings}</tr>
                 </thead>

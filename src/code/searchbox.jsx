@@ -21,10 +21,12 @@ module.exports = React.createClass({
     },
     render: function(){
     	return (
-            <div className='search-box'>
-                <label><input type='checkbox' checked={this.state.useRegex} onChange={this.handleCheckBox} />Käytä regex</label>
+            <form className='search-box pure-form'>
+            <fieldset>
                 <input type='search' placeholder={this.props.placeholder} onChange={this.handleText} value={this.state.searchTerm} />
-            </div>
+                <label><input type='checkbox' checked={this.state.useRegex} onChange={this.handleCheckBox} />Käytä regex</label>
+            </fieldset>
+            </form>
 		)
     }
 });
