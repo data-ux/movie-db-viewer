@@ -7,15 +7,24 @@ module.exports = React.createClass({
     getInitialState: function(){
         return {
             sortColumn: 0,
-            sortAscending : true
+            sortAscending : true,
+            openedRow: null
         };
     },
-    handleClick: function(SynthEvent, id){
+    headerClick: function(SynthEvent, id){
         var col = parseInt(id.slice(-1));
         this.setState({
             sortColumn: col,
             sortAscending: this.state.sortColumn === col ? !this.state.sortAscending : this.state.sortAscending
         });
+    },
+    rowClick: function(SynthEvent, id){
+        var key = parseInt(id.split('$')[1]);
+        if(this.state.openedRow === key){
+            this.setState({openedRow: null});
+        }else{
+            this.setState({openedRow: key});
+        }
     },
     render: function(){
         var headings = this.props.data.headings.map(function(heading, i) {
@@ -24,7 +33,7 @@ module.exports = React.createClass({
                 className = this.state.sortAscending ? 'sort-ascending' : 'sort-descending';
             }
             return (
-                <th className={className} onClick={this.handleClick}>{heading}</th>
+                <th className={className} onClick={this.headerClick}>{heading}</th>
             )
         }, this);
         var sorted;
@@ -32,21 +41,26 @@ module.exports = React.createClass({
             sorted = this.props.data.table.slice().sort(yearSorter.bind(this));
         }else{
             sorted = this.props.data.table.slice().sort(stringSorter.bind(this));
-        } 
-        var rows = sorted.map(function(row) {
+        }
+        var openedLocation;
+        var rows = sorted.map(function(row, index) {
+            if(this.state.openedRow === row.id) openedLocation = index+1;
             var cells = row.cells.map(function(cell){
                 return (
                     <td>{cell}</td>
                 )
             });
             return (
-                <tr key={row.id}>
+                <tr className={'normal-row' + (index%2 ? '': ' dark-row')} key={row.id} onClick={this.rowClick}>
                 {cells}
                 </tr>
             );
-        });
+        }, this);
+        if(openedLocation >= 0){
+            rows.splice(openedLocation, 0, <tr key="orow" className={'opened-row'+(openedLocation%2 ? ' dark-row': '')}><td colSpan={this.props.data.headings.length}>Lisätietoa</td></tr>);
+        }
         return (
-            <table className='movie-table pure-table pure-table-striped'>
+            <table className='movie-table pure-table'>
                 <thead>
                 <tr>{headings}</tr>
                 </thead>

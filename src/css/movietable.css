@@ -27,7 +27,17 @@ table.movie-table th.sort-descending:after{
 	border-width: 5px;
 	border-color: #888 transparent transparent transparent;
 }
-table.movie-table td:last-child{
+table.movie-table tr.normal-row td:last-child{
 	max-width:200px;
 	min-width:200px;
+}
+table.movie-table .dark-row{
+	background-color: #f2f2f2;
+}
+table.movie-table .opened-row td{
+	padding: 3px 16px 8px 16px;
+	font-size: 12px;
+}
+table.movie-table td{
+	border: 0;
 }
