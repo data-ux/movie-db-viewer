@@ -33,9 +33,15 @@ module.exports = React.createClass({
             }catch(e){
                 return;
             }
-            cellTest = function(c){return regex.test(c)}
+            cellTest = function(c){
+                if(c === '') return false;
+                return regex.test(c)
+            }
         }else{
-            cellTest = function(c){return c.toLowerCase().indexOf(searchOptions.searchTerm.toLowerCase()) >= 0;}
+            cellTest = function(c){
+                if(c === '') return false;
+                return c.toLowerCase().indexOf(searchOptions.searchTerm.toLowerCase()) >= 0;
+            }
         }
         var filteredTable = this.state.movies.table.filter(function(e){
             return e.cells.some(cellTest);
