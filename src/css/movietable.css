@@ -5,3 +5,7 @@ table.movie-table th{
 table.movie-table th:hover{
 	text-decoration: underline;
 }
+table.movie-table td:last-child{
+	max-width:200px;
+	min-width:200px;
+}
