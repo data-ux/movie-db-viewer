@@ -38,6 +38,9 @@ table.movie-table .opened-row td{
 	padding: 3px 16px 8px 16px;
 	font-size: 12px;
 }
+table.movie-table .opened-row span{
+	margin-right: 25px;
+}
 table.movie-table td{
 	border: 0;
 }

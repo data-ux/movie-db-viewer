@@ -9,7 +9,10 @@ module.exports = function getMovies(callback){
 			'valmistusvuosi',
 			'nimi',
 			'synopsis',
-			'tekijät'
+			'tekijät',
+			'kestohms',
+			'kuvausformaatti',
+			'väri'
 		];
 		meat.table = data.feed.entry.map(function(e, i) {
 			return {

@@ -48,7 +48,7 @@ module.exports = React.createClass({
     	return (
             <div className='movie-ui'>
             <SearchBox placeholder='Hae elokuvista' onSearch={this.handleSearch} />
-			<MovieTable data={this.state.filtered} />
+			<MovieTable data={this.state.filtered} mainCols={4} />
             </div>
 		)
     }

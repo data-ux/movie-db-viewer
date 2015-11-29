@@ -27,7 +27,7 @@ module.exports = React.createClass({
         }
     },
     render: function(){
-        var headings = this.props.data.headings.map(function(heading, i) {
+        var headings = this.props.data.headings.slice(0, this.props.mainCols).map(function(heading, i) {
             var className = '';
             if(this.state.sortColumn === i){
                 className = this.state.sortAscending ? 'sort-ascending' : 'sort-descending';
@@ -45,7 +45,7 @@ module.exports = React.createClass({
         var openedLocation;
         var rows = sorted.map(function(row, index) {
             if(this.state.openedRow === row.id) openedLocation = index+1;
-            var cells = row.cells.map(function(cell){
+            var cells = row.cells.slice(0, this.props.mainCols).map(function(cell){
                 return (
                     <td>{cell}</td>
                 )
@@ -57,7 +57,12 @@ module.exports = React.createClass({
             );
         }, this);
         if(openedLocation >= 0){
-            rows.splice(openedLocation, 0, <tr key="orow" className={'opened-row'+(openedLocation%2 ? ' dark-row': '')}><td colSpan={this.props.data.headings.length}>Lisätietoa</td></tr>);
+            rows.splice(openedLocation, 0, (
+            <tr key="orow" className={'opened-row'+(openedLocation%2 ? ' dark-row': '')}><td colSpan={this.props.mainCols}>
+            {this.props.data.headings.slice(this.props.mainCols).map(function(e, i){
+                return <span>{e + ': ' + sorted[openedLocation].cells[i+this.props.mainCols]}</span>
+            }, this)}
+            </td></tr>));
         }
         return (
             <table className='movie-table pure-table'>
