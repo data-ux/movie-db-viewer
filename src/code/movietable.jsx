@@ -60,7 +60,7 @@ module.exports = React.createClass({
             rows.splice(openedLocation, 0, (
             <tr key="orow" className={'opened-row'+(openedLocation%2 ? ' dark-row': '')}><td colSpan={this.props.mainCols}>
             {this.props.data.headings.slice(this.props.mainCols).map(function(e, i){
-                var value = sorted[openedLocation].cells[i+this.props.mainCols];
+                var value = sorted[openedLocation-1].cells[i+this.props.mainCols];
                 if(value === '') return null;
                 return <span>{e + ': ' + value}</span>
             }, this)}
