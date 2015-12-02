@@ -25,26 +25,13 @@ module.exports = React.createClass({
         }.bind(this));
     },
     handleSearch: function(searchOptions){
-        var cellTest;
-        var regex;
-        if(searchOptions.useRegex){
-            try{
-                regex = new RegExp(searchOptions.searchTerm, 'i');
-            }catch(e){
-                return;
-            }
-            cellTest = function(c){
-                if(c === '') return false;
-                return regex.test(c)
-            }
-        }else{
-            cellTest = function(c){
+        var self = this;
+        var vimeoColumn = this.state.movies.headings.indexOf('vimeo');
+        var filteredTable = this.state.movies.table.filter(function(e){
+            return (searchOptions.checkBox ? e.cells[vimeoColumn] !== '' : true) && e.cells.some(function(c, index){
                 if(c === '') return false;
                 return c.toLowerCase().indexOf(searchOptions.searchTerm.toLowerCase()) >= 0;
-            }
-        }
-        var filteredTable = this.state.movies.table.filter(function(e){
-            return e.cells.some(cellTest);
+            });
         });
         this.setState({
             filtered: {table: filteredTable, headings: this.state.movies.headings},
