@@ -6,13 +6,15 @@ module.exports = function getMovies(callback){
 	function parse(data) {
 		var meat = {};
 		meat.headings = [
-			'valmistusvuosi',
 			'nimi',
+			'valmistusvuosi',
 			'synopsis',
 			'tekijät',
 			'kestohms',
 			'kuvausformaatti',
-			'väri'
+			'väri',
+			'ääni',
+			'vimeo'
 		];
 		meat.table = data.feed.entry.map(function(e, i) {
 			return {

@@ -6,7 +6,7 @@ module.exports = React.createClass({
     displayName: 'MovieTable',
     getInitialState: function(){
         return {
-            sortColumn: 0,
+            sortColumn: 1,
             sortAscending : true,
             openedRow: null
         };
@@ -59,10 +59,14 @@ module.exports = React.createClass({
         if(openedLocation >= 0){
             rows.splice(openedLocation, 0, (
             <tr key="orow" className={'opened-row'+(openedLocation%2 ? ' dark-row': '')}><td colSpan={this.props.mainCols}>
-            {this.props.data.headings.slice(this.props.mainCols).map(function(e, i){
+            {this.props.data.headings.slice(this.props.mainCols).map(function(heading, i){
                 var value = sorted[openedLocation-1].cells[i+this.props.mainCols];
                 if(value === '') return null;
-                return <span>{e + ': ' + value}</span>
+                if(heading === 'vimeo'){
+                    return <a href={value} target="_blank">Katso video</a>
+                }else{
+                    return <span>{value}</span>
+                }
             }, this)}
             </td></tr>));
         }
