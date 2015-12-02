@@ -2,6 +2,8 @@
 'use strict'
 require("../css/movietable.css")
 var React = require('react')
+var VimeoThumb= require('./vimeothumb')
+
 module.exports = React.createClass({
     displayName: 'MovieTable',
     getInitialState: function(){
@@ -58,12 +60,12 @@ module.exports = React.createClass({
         }, this);
         if(openedLocation >= 0){
             rows.splice(openedLocation, 0, (
-            <tr key="orow" className={'opened-row'+(openedLocation%2 ? ' dark-row': '')}><td colSpan={this.props.mainCols}>
+            <tr key={"orow" + sorted[openedLocation-1].id} className={'opened-row'+(openedLocation%2 ? ' dark-row': '')}><td colSpan={this.props.mainCols}>
             {this.props.data.headings.slice(this.props.mainCols).map(function(heading, i){
                 var value = sorted[openedLocation-1].cells[i+this.props.mainCols];
                 if(value === '') return null;
                 if(heading === 'vimeo'){
-                    return <a href={value} target="_blank">Katso video</a>
+                    return <VimeoThumb videoId={value.split('/').pop()} />
                 }else{
                     return <span>{value}</span>
                 }

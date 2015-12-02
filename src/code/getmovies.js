@@ -10,11 +10,11 @@ module.exports = function getMovies(callback){
 			'valmistusvuosi',
 			'synopsis',
 			'tekijät',
+			'vimeo',
 			'kestohms',
 			'kuvausformaatti',
 			'väri',
-			'ääni',
-			'vimeo'
+			'ääni'
 		];
 		meat.table = data.feed.entry.map(function(e, i) {
 			return {
