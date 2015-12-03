@@ -1,8 +1,8 @@
 a.vimeo-thumb{
 	position: relative;
+	margin-right: 20px;
 }
 a.vimeo-thumb img{
-	margin-right: 20px;
 	vertical-align: text-top;
 	float: left;
 	box-sizing: border-box;
@@ -14,7 +14,7 @@ a.vimeo-thumb:after{
 	width: 30px;
 	height: 30px;
 	top: 22px;
-	right: 55px;
+	right: 35px;
 	position: absolute;
 	background-image: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="utf-8"?><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="90" fill="none" stroke-width="15" stroke="#fff"></circle><polygon points="70, 55 70, 145 145, 100" fill="#fff"></polygon></svg>');
 }
