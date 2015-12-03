@@ -39,7 +39,7 @@ module.exports = React.createClass({
             )
         }, this);
         var sorted;
-        if(this.props.data.headings[ this.state.sortColumn ] === 'valmistusvuosi'){
+        if(this.props.data.headings[ this.state.sortColumn ] === 'vuosi'){
             sorted = this.props.data.table.slice().sort(yearSorter.bind(this));
         }else{
             sorted = this.props.data.table.slice().sort(stringSorter.bind(this));
