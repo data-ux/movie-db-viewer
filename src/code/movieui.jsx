@@ -30,6 +30,7 @@ module.exports = React.createClass({
         var filteredTable = this.state.movies.table.filter(function(e){
             return (searchOptions.checkBox ? e.cells[vimeoColumn] !== '' : true) && e.cells.some(function(c, index){
                 if(c === '') return false;
+                if(index === vimeoColumn) return false;
                 return c.toLowerCase().indexOf(searchOptions.searchTerm.toLowerCase()) >= 0;
             });
         });
