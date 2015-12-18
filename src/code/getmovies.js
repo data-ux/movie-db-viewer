@@ -14,7 +14,8 @@ module.exports = function getMovies(callback){
 			{key: 'kestohms'},
 			{key: 'kuvausformaatti'},
 			{key: 'väri'},
-			{key: 'ääni'}
+			{key: 'ääni'},
+			{key: 'kadoksissa'}
 		];
 		meat.table = data.feed.entry.map(function(e, i) {
 			return {

@@ -63,11 +63,14 @@ module.exports = React.createClass({
             <tr key={"orow" + sorted[openedLocation-1].id} className={'opened-row'+(openedLocation%2 ? ' dark-row': '')}><td colSpan={this.props.mainCols}>
             {this.props.data.headings.slice(this.props.mainCols).map(function(heading, i){
                 var value = sorted[openedLocation-1].cells[i+this.props.mainCols];
-                if(value === '') return null;
-                if(heading === 'vimeo'){
-                    return <VimeoThumb videoId={value.split('/').pop()} />
-                }else{
-                    return <span>{value}</span>
+                if(value.trim() === '') return null;
+                switch(heading){
+                    case 'vimeo':
+                        return <VimeoThumb videoId={value.split('/').pop()} />
+                    case 'kadoksissa':
+                        if(value === 'kyllä') return <span>materiaali kadoksissa</span>; else return null
+                    default:
+                        return <span>{value}</span>
                 }
             }, this)}
             </td></tr>));
