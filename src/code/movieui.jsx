@@ -27,11 +27,13 @@ module.exports = React.createClass({
     handleSearch: function(searchOptions){
         var self = this;
         var vimeoColumn = this.state.movies.headings.indexOf('vimeo');
+        var terms = searchOptions.searchTerm.toLowerCase().split(' ').filter(function(t){return t.length > 1});
         var filteredTable = this.state.movies.table.filter(function(e){
-            return (searchOptions.checkBox ? e.cells[vimeoColumn] !== '' : true) && e.cells.some(function(c, index){
-                if(c === '') return false;
-                if(index === vimeoColumn) return false;
-                return c.toLowerCase().indexOf(searchOptions.searchTerm.toLowerCase()) >= 0;
+            return (searchOptions.checkBox ? e.cells[vimeoColumn] !== '' : true) && terms.every(function(term){ return e.cells.some(function(c, index){
+                    if(c === '') return false;
+                    if(index === vimeoColumn) return false;
+                    return c.toLowerCase().indexOf(term) >= 0;
+                });
             });
         });
         this.setState({
