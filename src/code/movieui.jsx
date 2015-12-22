@@ -4,6 +4,7 @@ var React = require('react')
 var getMovies = require('./getmovies')
 var SearchBox = require('./searchbox')
 var MovieTable = require('./movietable')
+require("../css/pure-forms-table.css")
 
 module.exports = React.createClass({
     displayName: 'MovieUI',
