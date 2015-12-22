@@ -23,8 +23,6 @@ module.exports = {
         //don't bundle the 'react' npm package with our bundle.js
         //but get it from a global 'React' variable
         
-        'react': 'React',
-        'react-dom': 'ReactDOM'
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
