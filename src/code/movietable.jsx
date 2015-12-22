@@ -67,8 +67,6 @@ module.exports = React.createClass({
                 switch(heading){
                     case 'vimeo':
                         return <VimeoThumb videoId={value.split('/').pop()} />
-                    case 'kadoksissa':
-                        if(value === 'kyllä') return <span>materiaali kadoksissa</span>; else return null
                     default:
                         return <span>{value}</span>
                 }

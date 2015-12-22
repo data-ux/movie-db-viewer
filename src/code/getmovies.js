@@ -21,10 +21,13 @@ module.exports = function getMovies(callback){
 			return {
 				id: i,
 				cells: headings.map(function(heading) {
-					if(heading.key === 'kuvaus'){
-						return e['gsx$' + heading.key].$t + ' ' + e['gsx$' + 'kurssikilpailujonkayhteydessätehty'].$t;
-					}else{
-						return e['gsx$' + heading.key].$t;
+					switch(heading.key){
+						case 'kuvaus':
+							return e['gsx$' + heading.key].$t + ' ' + e['gsx$' + 'kurssikilpailujonkayhteydessätehty'].$t;
+						case 'kadoksissa':
+							if(e['gsx$' + heading.key].$t.trim() === 'kyllä') return 'materiaali kadoksissa'; else return "";
+						default:
+							return e['gsx$' + heading.key].$t;
 					}
 				})
 			};
