@@ -1,3 +1,7 @@
 .search-box input[type=checkbox]{
-	margin: 0 5px 0 10px;
+	margin-right: 5px;
+    width: auto!important;
+}
+.search-box input[type=search]{
+    margin-right: 10px;
 }
