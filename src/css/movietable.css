@@ -45,9 +45,3 @@ table.movie-table .opened-row span{
 table.movie-table td{
 	border: 0;
 }
-table.movie-table .opened-row span:first-of-type{
-	margin-left: 120px;
-}
-table.movie-table .opened-row a+span{
-	margin-left: 0px!important;
-}
