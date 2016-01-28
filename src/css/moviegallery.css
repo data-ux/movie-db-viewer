@@ -1,0 +1,10 @@
+div.moviegallery{
+    margin-bottom: 30px;
+}
+div.moviegallery a{
+    width: 32%;
+    height: 180px;
+}
+div.moviegallery a:not(:first-of-type){
+    margin-left: 2%;
+}

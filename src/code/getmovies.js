@@ -35,6 +35,12 @@ module.exports = function getMovies(callback){
 		meat.headings = headings.map(function(heading){
 			return heading.display || heading.key;
 		});
+        meat.featured = data.feed.entry.filter(function(e){
+            return e.hasOwnProperty('gsx$suositeltu') && e['gsx$suositeltu'].$t.length !== 0;
+        }).map(function(e){
+            return {name: e['gsx$nimi'].$t, id: e['gsx$vimeo'].$t.split('/').pop()};
+        });
+        
 		callback(meat);
 	}
 }

@@ -1,0 +1,31 @@
+a.moviepreview{
+    display: inline-block;
+    height: 150px;
+    width: 200px;
+    background-color: #888;
+    vertical-align: top;
+    position: relative;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+a.moviepreview span{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 5px 5px 7px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+}
+a.moviepreview:before{
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 75px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%);
+}

@@ -2,6 +2,7 @@
 'use strict'
 var React = require('react')
 var getMovies = require('./getmovies')
+var MovieGallery = require('./moviegallery')
 var SearchBox = require('./searchbox')
 var MovieTable = require('./movietable')
 require("../css/pure-forms-table.css")
@@ -12,17 +13,21 @@ module.exports = React.createClass({
         return {
             movies:{
                 headings:[],
-                table: [],
+                table: []
             },
             filtered:{
                 headings:[],
-                table: [],
-            }
+                table: []
+            },
+            featured: []
         };
     },
     componentDidMount: function() {
         getMovies(function(result){
-            this.setState({movies: result, filtered: result});
+            this.setState({
+                movies: {headings: result.headings, table: result.table}, 
+                filtered: {headings: result.headings, table: result.table}, 
+                featured: result.featured});
         }.bind(this));
     },
     handleSearch: function(searchOptions){
@@ -42,11 +47,16 @@ module.exports = React.createClass({
         });
     },
     render: function(){
-    	return (
-            <div className='movie-ui'>
-            <SearchBox placeholder='Hae elokuvista' onSearch={this.handleSearch} />
-			<MovieTable data={this.state.filtered} mainCols={4} />
-            </div>
-		)
+        if(this.state.movies.headings.length !== 0){
+            return (
+                <div className='movie-ui'>
+                <MovieGallery movies={this.state.featured} />
+                <SearchBox placeholder='Hae elokuvista' onSearch={this.handleSearch} />
+                <MovieTable data={this.state.filtered} mainCols={4} />
+                </div>
+            )
+        }else{
+            return <div className='movie-ui'></div>
+        }
     }
 });
