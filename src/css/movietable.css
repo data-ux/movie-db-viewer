@@ -28,8 +28,8 @@ table.movie-table th.sort-descending:after{
 	border-color: #888 transparent transparent transparent;
 }
 table.movie-table tr.normal-row td:last-child{
-	max-width:250px;
-	min-width:250px;
+	max-width:245px;
+	min-width:240px;
 }
 table.movie-table .dark-row{
 	background-color: #f2f2f2;
