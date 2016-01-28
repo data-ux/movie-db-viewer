@@ -7,6 +7,8 @@ a.vimeo-thumb img{
 	float: left;
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
+    height: 75px;
+    margin: 0;
 }
 a.vimeo-thumb:after{
 	content: "";
