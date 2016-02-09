@@ -92,22 +92,34 @@ function yearSorter(a,b){
     var c = this.state.sortColumn;
     var a_match = a.cells[c].match(yearRegex) || ['9999'];
     var b_match = b.cells[c].match(yearRegex) || ['9999'];
+    var result;
     if(this.state.sortAscending){
-        return (a_match[0]+a.cells[c]).localeCompare(b_match[0]+b.cells[c]);
+        result = (a_match[0]+a.cells[c]).localeCompare(b_match[0]+b.cells[c]);
     }else{
-         return (b_match[0]+b.cells[c]).localeCompare(a_match[0]+a.cells[c]);
+        result = (b_match[0]+b.cells[c]).localeCompare(a_match[0]+a.cells[c]);
+    }
+    if (result === 0 && c !== 0){
+        return a.cells[0].localeCompare(b.cells[0]);
+    }else{
+        return result;
     }
 }
 
 function stringSorter(a,b){
     var c = this.state.sortColumn;
-    var a = a.cells[c];
-    var b = b.cells[c];
-    if(a.length < 2) a = '末';
-    if(b.length < 2) b = '末';
+    var ac = a.cells[c];
+    var bc = b.cells[c];
+    if(ac.length < 2) ac = '末';
+    if(bc.length < 2) bc = '末';
+    var result;
     if(this.state.sortAscending){
-        return a.localeCompare(b);
+        result = ac.localeCompare(bc);
     }else{
-         return b.localeCompare(a);
+        result = bc.localeCompare(ac);
+    }
+    if (result === 0 && c !== 0){
+        return a.cells[0].localeCompare(b.cells[0]);
+    }else{
+        return result;
     }
 }
