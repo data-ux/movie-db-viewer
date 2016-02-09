@@ -109,8 +109,8 @@ function stringSorter(a,b){
     var c = this.state.sortColumn;
     var ac = a.cells[c];
     var bc = b.cells[c];
-    if(ac.length < 2) ac = '末';
-    if(bc.length < 2) bc = '末';
+    if(ac.trim().length === 0) ac = '末';
+    if(bc.trim().length === 0) bc = '末';
     var result;
     if(this.state.sortAscending){
         result = ac.localeCompare(bc);
