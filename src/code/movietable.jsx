@@ -74,7 +74,7 @@ module.exports = React.createClass({
                         return <VimeoThumb videoId={value.split('/').pop()} />
                     case 'rooleissa':
                         if(value.trim().length > 1 ){
-                            return (<span>{'Rooleissa: ' + value}</span>)
+                            return (<span><br />{'Rooleissa: ' + value}</span>)
                         }else{
                             return null;
                         }
