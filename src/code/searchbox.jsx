@@ -19,11 +19,17 @@ module.exports = React.createClass({
         this.setState({checkBox: !this.state.checkBox});
         this.props.onSearch({checkBox: !this.state.checkBox, searchTerm: this.state.searchTerm});
     },
+    handleKeyDown: function(e){
+        if(e.key === 'Enter'){
+            e.preventDefault();
+            return false;
+        }
+    },
     render: function(){
     	return (
             <form className='search-box pure-form'>
             <fieldset>
-                <input type='search' placeholder={this.props.placeholder} onChange={this.handleText} value={this.state.searchTerm} />
+                <input type='search' placeholder={this.props.placeholder} onChange={this.handleText} value={this.state.searchTerm} onKeyDown={this.handleKeyDown} />
                 <label><input type='checkbox' checked={this.state.checkBox} onChange={this.handleCheckBox} />Vain katsottavissa olevat</label>
             </fieldset>
             </form>
