@@ -44,6 +44,8 @@ table.movie-table .opened-row span{
 	margin-right: 25px;
 }
 table.movie-table .opened-row td.hasThumb{
-    height: 75px;
+    height: 86px;
     padding-left: 132px;
+    padding-bottom: 11px;
+    box-sizing: border-box;
 }
