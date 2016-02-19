@@ -58,15 +58,26 @@ module.exports = React.createClass({
                 </tr>
             );
         }, this);
+        var vimeoColumn = this.props.data.headings.indexOf('vimeo');
+        var hasVimeoThumb = false;
         if(openedLocation >= 0){
+            if(vimeoColumn >= 0 && sorted[openedLocation-1].cells[vimeoColumn].length > 0){
+                hasVimeoThumb = true;
+            }
             rows.splice(openedLocation, 0, (
-            <tr key={"orow" + sorted[openedLocation-1].id} className={'opened-row'+(openedLocation%2 ? ' dark-row': '')}><td colSpan={this.props.mainCols}>
+            <tr key={"orow" + sorted[openedLocation-1].id} className={'opened-row'+(openedLocation%2 ? ' dark-row': '')}><td colSpan={this.props.mainCols} className={hasVimeoThumb ? 'hasThumb' : null}>
             {this.props.data.headings.slice(this.props.mainCols).map(function(heading, i){
                 var value = sorted[openedLocation-1].cells[i+this.props.mainCols];
                 if(value.trim() === '') return null;
                 switch(heading){
                     case 'vimeo':
                         return <VimeoThumb videoId={value.split('/').pop()} />
+                    case 'rooleissa':
+                        if(value.trim().length > 1 ){
+                            return (<span>{'Rooleissa: ' + value}</span>)
+                        }else{
+                            return null;
+                        }
                     default:
                         return <span>{value}</span>
                 }
