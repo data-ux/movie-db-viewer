@@ -13,7 +13,7 @@ module.exports = React.createClass({
     },
     componentDidMount: function() {
         var self = this;
-        $.getJSON('http://vimeo.com/api/v2/video/' + this.props.videoId + '.json').done(function(response){
+        $.getJSON('//vimeo.com/api/v2/video/' + this.props.videoId + '.json').done(function(response){
             self.setState({url: response[0].thumbnail_small});
         });
     },
